@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+<body>
+    <div class="cart__wrapper">
+        <a href="/cart" class="">To cart</a>
+        <span class="cart__count">0</span>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Cart</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td class="table__id">{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td><img src="{{ product.image }}"></td>
+                <td>{{ product.price }}</td>
+                <td>
+                    <form>
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button type="button" onclick="addToCart(this)">Add to cart</button>
+                      </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="container">
+        <a href="/cart">Go to cart</a>
+    </div>
+    <script src="add_to_cart.js"></script>
+</body>
+</html>

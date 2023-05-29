@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Image</th>
+                <th>Summary</th>
+                <th>Cart</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cart_item in cart_products %}
+            <tr>
+                <td>{{ cart_item.name }}</td>
+                <td class="price">{{ cart_item.price }}</td>
+                <td class="quantity">{{ cart_item.quantity }}</td>
+                <td><img src="{{ cart_item.image }}"></td>
+                <td class="total">{{ cart_item.quantity * cart_item.price }}</td>
+                <td>
+                  <form method="post" action="remove-cart">
+                      <input type="hidden" name="product_id" value="{{ cart_item.id }}">
+                      <button type="submit">Remove product</button>
+                  </form>
+              </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+    <p>Total amount of goods: <span id="total-quantity"></span></p>
+    <p>Total price: <span id="total-price"></span></p>
+    </div>
+    <div>
+        <a href="/products">Go to catalog</a>
+    </div>  
+    <script src="elements.js"></script>
+</body>
+</html>
